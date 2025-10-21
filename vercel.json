@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "src": "api/requirements.txt",
+      "use": "@vercel/static-build",
+      "config": { "installCommand": "pip install -r api/requirements.txt -t public" }
+    },
+    {
+      "src": "api/app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "api/callback.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "api/login.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "api/view.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    { "src": "/api/login", "dest": "/api/login.py" },
+    { "src": "/api/callback", "dest": "/api/callback.py" },
+    { "src": "/(.*)", "dest": "/api/app.py" }
+  ]
+}
